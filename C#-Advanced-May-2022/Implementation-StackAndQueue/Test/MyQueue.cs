@@ -22,7 +22,6 @@ namespace StartUp
             this.Count = 0;
         }
 
-        //Public methods:
         public void Enqueue(int element)
         {
             if (this.Count == this.items.Length)
@@ -78,7 +77,6 @@ namespace StartUp
             }
         }
 
-        //Private methods:
         private void Resize()
         {
             var copy = new int[this.items.Length * 2];

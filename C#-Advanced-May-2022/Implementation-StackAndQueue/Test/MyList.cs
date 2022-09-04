@@ -42,7 +42,6 @@ namespace StartUp
         {
             if (this.Count == this.items.Length)
             {
-                //We need recizing:
                 this.Resize();
             }
 
@@ -88,19 +87,6 @@ namespace StartUp
             this.items[index] = value;
         }
 
-        //public bool Contains(int element)
-        //{
-        //    foreach (var item in items)
-        //    {
-        //        if (item == element)
-        //        {
-        //            return true;
-        //        }
-        //    }
-
-        //    return false;
-        //}
-
         public void Swap(int firstIndex, int secondIndex)
         {
             if (!IsIndexValid(firstIndex) || !IsIndexValid(secondIndex))
@@ -127,8 +113,6 @@ namespace StartUp
             return default;
         }
 
-
-        //Private methods:
         private void Resize()
         {
             var copy = new T[items.Length * 2];

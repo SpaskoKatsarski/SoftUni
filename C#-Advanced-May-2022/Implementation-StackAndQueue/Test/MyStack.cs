@@ -20,7 +20,6 @@ namespace StartUp
             this.Count = 0;
         }
 
-        //Public methods:
         public int GetPapacity()
         {
             return this.items.Length;
@@ -69,7 +68,6 @@ namespace StartUp
             }
         }
 
-        //Private methods:
         private void Resize()
         {
             var copy = new int[this.items.Length * 2];
