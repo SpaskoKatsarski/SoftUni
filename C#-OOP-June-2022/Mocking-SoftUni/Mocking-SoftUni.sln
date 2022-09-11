@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32602.215
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CatDatabase", "CatDatabase\CatDatabase.csproj", "{855728F3-7E02-4EDA-A030-F42FA8E098EA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CatTester.Tests", "CatTester.Tests\CatTester.Tests.csproj", "{FA1B8B1E-C711-4219-9F74-8F6F38280E98}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{855728F3-7E02-4EDA-A030-F42FA8E098EA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{855728F3-7E02-4EDA-A030-F42FA8E098EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{855728F3-7E02-4EDA-A030-F42FA8E098EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{855728F3-7E02-4EDA-A030-F42FA8E098EA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FA1B8B1E-C711-4219-9F74-8F6F38280E98}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FA1B8B1E-C711-4219-9F74-8F6F38280E98}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FA1B8B1E-C711-4219-9F74-8F6F38280E98}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FA1B8B1E-C711-4219-9F74-8F6F38280E98}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {5E170B45-9349-4417-8F9C-6AAA068BCD51}
+	EndGlobalSection
+EndGlobal
