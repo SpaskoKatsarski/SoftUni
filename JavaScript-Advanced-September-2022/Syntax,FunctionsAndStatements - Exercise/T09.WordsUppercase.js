@@ -2,4 +2,4 @@ function solve(input) {
     return input.match(/\w+/g).join(', ').toUpperCase();
 }
 
-solve('Hello, how are you?')
+console.log(solve('Im fine!!! Thx :D'));
