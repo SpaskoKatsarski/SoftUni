@@ -11,9 +11,11 @@ function solve(matrix) {
                 if (matrix[i][j + 1] === currStr) {
                     matches++;
                 }
-            } else {
-                if (matrix[i + 1][j] === currStr || matrix[i][j + 1] === currStr) {
-                matches++;
+            } else if (matrix[i + 1][j] === currStr || matrix[i][j + 1] === currStr) {
+                if (matrix[i + 1][j] === currStr && matrix[i][j + 1] === currStr) {
+                    matches += 2;
+                } else {
+                    matches++;
                 }
             }
         }
@@ -23,6 +25,6 @@ function solve(matrix) {
 }
 
 console.log(solve([
-['dope', 'nah', 'nah', 'hello'],
-['dope', 'dope', 'nah', 'hello']
+['1', '1', '5', '8'],
+['1', '0', '5', '8']
 ]));
