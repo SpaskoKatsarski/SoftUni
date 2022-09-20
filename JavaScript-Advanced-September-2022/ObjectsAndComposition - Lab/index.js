@@ -1,44 +1,44 @@
-// let person = {
-//     name: 'Ivan'
-// }
+let person = {
+    name: 'Ivan'
+}
 
-// person.age = 5;
+person.age = 5;
 
-// console.log(person);
+console.log(person);
 
-// let arr = [1, 2, 3, 4, 5];
-// let [a, b, c, ...rest] = arr;
-// console.log(rest);
+let arr = [1, 2, 3, 4, 5];
+let [a, b, c, ...rest] = arr;
+console.log(rest);
 
 
-// let student = {
-//     name: 'Ivan',
-//     age: 15
-// }
+let student = {
+    name: 'Ivan',
+    age: 15
+}
 
-// let { age, name } = student;
-// console.log(age);
+let { age, name } = student;
+console.log(age);
 
-// student['age']++;
-// console.log(student.age);
+student['age']++;
+console.log(student.age);
 
-// student['city'] = 'Sofia';
-// console.log(student);
+student['city'] = 'Sofia';
+console.log(student);
 
-// delete student.city;
-// console.log(student)
+delete student.city;
+console.log(student)
 
-// class Cat {
-//     name;
-//     age;
-// }
+class Cat {
+    name;
+    age;
+}
 
-// let cat = new Cat();
+let cat = new Cat();
 
-// cat.name = 'Sharo';
-// cat.coutnry = 'Bulgaria';
+cat.name = 'Sharo';
+cat.coutnry = 'Bulgaria';
 
-// console.log(cat);
+console.log(cat);
 
 let someCat = {
     name: 'Ivan',
