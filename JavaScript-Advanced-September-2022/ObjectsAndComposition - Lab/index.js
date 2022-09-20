@@ -60,11 +60,11 @@ console.log(someCat.name);
 console.log(copyCat.name);
 
 function canPrint(obj) {
-    let func = () => {
-        return `${this.name} is printing...`
+    let print = function ()  {
+        return `${obj.name} is printing...`
     }
 
-    obj.print = func;
+    obj.print = print;
 }
 
 let printer = {
@@ -73,4 +73,18 @@ let printer = {
 
 canPrint(printer);
 
-console.log(printer.print) // ????
+console.log(printer.print()) // ????
+
+let dog = {
+    name : 'Fiora',
+    age: 7,
+    owner : {
+        name: 'Ivan',
+        address: {
+            building: 'Yellow',
+            name: 'Ilinden'
+        }
+    }
+}
+
+console.log(dog.owner.address.building);
