@@ -21,7 +21,13 @@ function solve(input) {
     result += '</table>';
 
     function escape(value) {
-        return value.toString().replace('<', '&lt;').replace('>', '&gt;').replace('&', '&amp;').replace('"', '&quot;');
+        return value
+            .toString()
+            .replace(/&/g, '&amp;')
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;')
+            .replace(/"/g, '&quot;')
+            .replace(/'/g, '&#39;');
     }
 
     return result;
