@@ -14,7 +14,6 @@ function solve(info) {
                 town,
             }
 
-            // result.push(obj);
             result[product] = obj;
         } else {
             //We have a product with the same name and now we have to compare their price.
@@ -27,7 +26,7 @@ function solve(info) {
                     town,
                 }
 
-                delete result[product];
+                // delete result[product]; // that was the problem
                 result[product] = obj;
             }
         }
