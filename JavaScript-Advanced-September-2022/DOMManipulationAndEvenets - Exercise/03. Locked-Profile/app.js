@@ -9,11 +9,10 @@ function lockedProfile() {
         let marks = e.target.parentElement.querySelectorAll('input[type=radio]');
 
         let unlock = marks[1];
-        debugger;
         if (unlock.checked) {
             let id = e.target.parentElement.getElementsByTagName('div')[0].id;
 
-            let condition = document.getElementById(id).style.display = 'none' ? 'block' : 'none'; 
+            let condition = document.getElementById(id).style.display === 'none' ||  document.getElementById(id).style.display === '' ? 'block' : 'none'; 
             document.getElementById(id).style.display = condition;
 
             let btnText = condition === 'none' ? 'Show more' : 'Hide it';
