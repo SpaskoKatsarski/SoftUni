@@ -42,3 +42,27 @@ function declaration() {
 }
 
 declaration();
+
+function logMessage(date, message, type) {
+    console.log(`${date.toLocaleString('en-US')} - ${type.toUpperCase()}: ${message}`)
+}
+
+logMessage(new Date(), 'Wrong password', 'Warning');
+
+let myFunc = (x) => (y, z) => console.log(x + y + z); 
+console.log('Result:')
+myFunc(5);
+
+// let logMessageDate = (date) => (message, type) => logMessage(date, message, type);
+// logMessage(new Date())();
+
+let cat = {
+    name: 'Sharo',
+};
+
+function mew(message) {
+    console.log(`${this.name}: Mew!, ${message}`)
+}
+
+mew.call(cat, 'TOP!');
+mew.apply(cat, ['Hello!']);
