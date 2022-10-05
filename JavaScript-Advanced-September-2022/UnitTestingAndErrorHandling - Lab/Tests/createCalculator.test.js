@@ -28,4 +28,12 @@ describe('createCalculator', () => {
 
         expect(calculator.get()).to.be.equal(7);
     });
+
+    it('should return NaN if we try to add string', () => {
+        let calculator = createCalculator();
+
+        calculator.add('Pesho');
+
+        expect(calculator.get()).to.be.NaN;
+    })
 });

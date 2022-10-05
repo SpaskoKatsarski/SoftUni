@@ -8,6 +8,20 @@ describe('rgbToHexColor', () => {
         expect(result).to.be.equal('#4287F5');
     });
 
+    it('should return #000000 with zeroes', () => {
+        let result = rgbToHexColor(0, 0, 0);
+
+        expect(result).to.be.equal('#000000');
+    });
+
+    it("should return #FFFFFF with 255 for each argument", function () {
+        expect(rgbToHexColor(255, 255, 255)).to.equal("#FFFFFF");
+    })
+
+    it('should return undefined if one of the arguments is floating point number', () => {
+        expect(rgbToHexColor(3.5, 12, 52)).to.be.equal(undefined);
+    })
+
     it('should return undefined if red parameter is not a number', () => {
         let result = rgbToHexColor('Pesho', 135, 245);
 
