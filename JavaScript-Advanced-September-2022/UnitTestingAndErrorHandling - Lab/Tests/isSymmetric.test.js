@@ -1,5 +1,5 @@
 const { expect } = require('chai');
-const isSymmetric = require('../T05.CheckForSymmetry');
+const isSymmetric = require('../UnitTestingAndErrorHandling - Lab/T05.CheckForSymmetry');
 
 describe('isSymmetric', () => {
     it('should return true if the array is symmetric', () => {

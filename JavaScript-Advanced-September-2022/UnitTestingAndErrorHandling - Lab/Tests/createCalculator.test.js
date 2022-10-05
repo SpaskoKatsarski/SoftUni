@@ -1,5 +1,5 @@
 const { expect } = require("chai");
-const createCalculator = require("../T07.AddOrSubtract");
+const createCalculator = require("../UnitTestingAndErrorHandling - Lab/T07.AddOrSubtract");
 
 describe('createCalculator', () => {
     it('should add the given value to the result', () => {

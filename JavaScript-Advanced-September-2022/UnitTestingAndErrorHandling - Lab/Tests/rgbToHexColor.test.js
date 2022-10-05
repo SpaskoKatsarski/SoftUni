@@ -1,5 +1,5 @@
 const { expect } = require("chai");
-const rgbToHexColor = require("../T06.RGBtoHex");
+const rgbToHexColor = require("../UnitTestingAndErrorHandling - Lab/T06.RGBtoHex");
 
 describe('rgbToHexColor', () => {
     it('should return the same color in hexadecimal format as a string', () => {
