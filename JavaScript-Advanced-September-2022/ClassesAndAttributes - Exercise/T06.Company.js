@@ -22,7 +22,7 @@ class Company {
             position,
 
             toString() {
-                return `${this.name} ${this.salary} ${this.position}`
+                return `${this.name} ${this.salary} ${this.position}`;
             }
         });
 
