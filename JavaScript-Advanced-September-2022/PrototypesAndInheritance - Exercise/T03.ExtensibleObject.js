@@ -4,7 +4,6 @@ function extensibleObject() {
         for (let prp of Object.keys(temp)) {
 
             if (typeof (temp[prp]) === 'function') {
-                Object.getPrototypeOf(temp)[prp] = temp[prp];
                 Object.defineProperty(Object.getPrototypeOf(temp), prp, {
                     value: temp[prp]
                 });
