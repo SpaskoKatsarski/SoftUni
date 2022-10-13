@@ -104,6 +104,14 @@ let classes = createComputerHierarchy();
 let Computer = classes.Computer;
 let Laptop = classes.Laptop;
 let Desktop = classes.Desktop;
+let Battery = classes.Battery;
 
 console.log(Object.getPrototypeOf(Desktop) === Computer);
 console.log(Object.getPrototypeOf(Laptop) === Computer);
+
+let battery = new Battery('Toshiba', 75);
+
+let laptop = new Laptop("Hewlett Packard", 2.4, 4, 0.5, 3.12, "Silver", battery);
+console.log(laptop);
+
+let invalidLaptop = new Laptop("Hewlett Packard", 2.4, 4, 0.5, 3.12, "Silver", 'Battery?');
