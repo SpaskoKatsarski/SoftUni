@@ -45,3 +45,5 @@ const carService = {
     },
   };
   
+carService.discount('str', 5)
+module.exports = { carService };
