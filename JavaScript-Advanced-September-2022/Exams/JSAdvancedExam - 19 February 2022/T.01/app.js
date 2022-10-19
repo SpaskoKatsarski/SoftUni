@@ -78,7 +78,7 @@ function solve() {
         positionInput.value = '';
         salaryInput.value = '';
 
-        sumOfSalaries.textContent = Number(sumOfSalaries.textContent) + salary;
+        sumOfSalaries.textContent = (Number(sumOfSalaries.textContent) + salary).toFixed(2);
 
         function edit(event) {
             let currentTr = event.target.parentElement.parentElement;
