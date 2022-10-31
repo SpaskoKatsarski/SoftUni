@@ -5,15 +5,12 @@ function loadRepos() {
 
 	fetch(url)
 		.then(handleResponse)
-		.then(handleData);
+		.then(handleData)
+		.catch(handleError);
 
 	function handleResponse(response) {
 		if (!response.ok) {
-			let li = document.createElement('li');
-			li.textContent = 'Invalid URL!';
-			list.replaceChildren(li);
-
-			// throw new Error(`Error: ${response.status} ${response.statusText}`);
+			throw new Error(`Error: ${response.status} ${response.statusText}`);
 		}
 
 		return response.json();
@@ -33,5 +30,12 @@ function loadRepos() {
 		});
 
 		list.replaceChildren(...repos);
+	}
+
+	function handleError(error) {
+		debugger;
+		let li = document.createElement('li');
+		li.textContent = error.message;
+		list.replaceChildren(li);
 	}
 }
