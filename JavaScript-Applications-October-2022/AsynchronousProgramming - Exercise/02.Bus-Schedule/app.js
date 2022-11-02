@@ -1,5 +1,5 @@
 function solve() {
-    let infoEl = document.getElementById('info');
+    let infoEl = document.getElementById('info').getElementsByClassName('info')[0];
     let departBtn = document.getElementById('depart');
     let arriveBtn = document.getElementById('arrive');
 
