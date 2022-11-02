@@ -10,7 +10,7 @@ function solve() {
         departBtn.disabled = true;
         arriveBtn.disabled = false;
 
-        nextStopData = await getStop(nextStop);
+        nextStopData = await getStopData(nextStop);
         infoEl.textContent = `Next stop ${nextStopData.name}`;
     }
 
@@ -22,9 +22,9 @@ function solve() {
         nextStop = nextStopData.next;
     }
 
-    async function getStop(stop) {
+    async function getStopData(id) {
         try {
-            let response = await fetch(`http://localhost:3030/jsonstore/bus/schedule/${stop}`);
+            let response = await fetch(`http://localhost:3030/jsonstore/bus/schedule/${id}`);
             let stopData = await response.json();
 
             return stopData;
