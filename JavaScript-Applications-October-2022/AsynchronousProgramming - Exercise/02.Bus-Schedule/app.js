@@ -1,4 +1,5 @@
 function solve() {
+    let firstStop = document.getElementById('depot');
 
     function depart() {
         console.log('Depart TODO...');
