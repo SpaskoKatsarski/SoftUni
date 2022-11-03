@@ -10,35 +10,47 @@ function attachEvents() {
 
     const postsEl = document.getElementById('posts');
 
-    async function viewPosts(event) {
+    const titleEl = document.getElementById('post-title');
+    const bodyEl = document.getElementById('post-body');
+    const commentsEl = document.getElementById('post-comments');
+
+    async function viewPosts() {
+        let selectedOption = postsEl.selectedOptions[0].value;
         
-        let currId = postsEl.options[postsEl.selectedIndex].value;
-        console.log(currId);
+        let postResponse = await fetch(postsUrl);
+        let postData = await postResponse.json();
 
-        let response = await fetch(commentsUrl + '/' + currId); // Here is the problem with the id that we set on row 32
+        let commentResponse = await fetch(commentsUrl);
+        let commentData = await commentResponse.json();
+
+        let selectedPost = Object.values(postData).find(p => p.id === selectedOption);
+        titleEl.textContent = selectedPost.title;
+        bodyEl.textContent = selectedPost.body;
+
+        let comments = Object.values(commentData).filter(c => c.postId === selectedOption);
+        let commentsList = comments.map(c => {
+            let li = document.createElement('li');
+            li.textContent = c.text;
+
+            return li;
+        });
+
+        commentsEl.replaceChildren(...commentsList);
+    }
+
+    async function loadPosts() {
+        let response = await fetch(postsUrl);
         let data = await response.json();
-    }
+        
+        postsEl.innerHTML = '';
 
-    function loadPosts() {
-        fetch(postsUrl)
-            .then(r => r.json())
-            .then(handlePostsData);
-    }
-
-    function handlePostsData(data) {
-        let options = [];
-
-        for (const post in data) {
-            let id = post;
-            let title = data[post].title;
-
+        Object.values(data).forEach(p => {
             let option = document.createElement('option');
-            option.value = id;
-            option.textContent = title;
+            option.value = p.id;
+            option.textContent = p.title;
 
-            options.push(option);
-        }
-        postsEl.replaceChildren(...options);
+            postsEl.appendChild(option);
+        })
     }
 }
 
