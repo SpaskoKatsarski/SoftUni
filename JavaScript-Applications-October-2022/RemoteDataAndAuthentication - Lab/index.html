@@ -1,33 +1,33 @@
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Post Demo</title>
-</head>
-<body>
-    <h1>Post Demo</h1>
-
-    <script>
-        async function postData() {
-            let requestData = {
-                'author': 'Spasko',
-                'title': 'Even cooler book',
-                'description': 'Way more interesting than everything I have read before!'
-            };
-
-            let response = await fetch('http://localhost:3030/jsonstore/demo', {
-                method: 'post',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(requestData)
-            });
-
-            let data = response.json();
-
-            return data;
+    <title>CRUD Demo</title>
+    <script src="app.js" defer></script>
+    <style>
+        article {
+            background-color: #eee;
+            margin: 32px;
+            padding: 16px;
         }
-    </script>
+    </style>
+</head>
+
+<body>
+    <h1>CRUD Demo</h1>
+    <form id="comment-form">
+        <label>Name: <input name="name" type="text"></label>
+        <div>
+            <label>Comment: <textarea name="content"></textarea></label>
+        </div>
+        <button id="send">Send Comment</button>
+    </form>
+    <button id="load">Load Comments</button>
+
+    <div id="comments">
+    </div>
 </body>
+
 </html>
