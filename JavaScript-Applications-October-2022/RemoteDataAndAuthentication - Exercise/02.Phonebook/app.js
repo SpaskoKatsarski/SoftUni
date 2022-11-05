@@ -23,7 +23,7 @@ function renderRecord(data) {
         const deleteBtn = document.createElement('button');
         deleteBtn.textContent = 'Delete';
         deleteBtn.addEventListener('click', deleteRecord);
-        
+
         li.appendChild(deleteBtn);
 
         return li;
@@ -52,22 +52,14 @@ async function onCreate(person, phone) {
         },
         body: JSON.stringify({ person, phone })
     });
-    
+
     onLoad();
 }
 
 async function onDelete(id) {
-    const response = await fetch(url + id, {
+    await fetch(url + id, {
         method: 'delete',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ person, phone })
     });
-
-    const data = await response.json();
-
-    return data;
 }
 
 attachEvents();
