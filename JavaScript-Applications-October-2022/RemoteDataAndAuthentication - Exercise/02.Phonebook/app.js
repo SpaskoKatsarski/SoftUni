@@ -1,68 +1,73 @@
+const url = 'http://localhost:3030/jsonstore/phonebook/';
+const list = document.getElementById('phonebook');
+const personInput = document.getElementById('person');
+const phoneInput = document.getElementById('phone');
+
 function attachEvents() {
-    document.getElementById('btnLoad').addEventListener('click', visualizeUsers);
-    document.getElementById('btnCreate').addEventListener('click', createUser);
+    document.getElementById('btnLoad').addEventListener('click', onLoad);
+    document.getElementById('btnCreate').addEventListener('click', createRecord);
+}
 
-    const url = 'http://localhost:3030/jsonstore/phonebook';
-    const nameInput = document.getElementById('person');
-    const phoneInput = document.getElementById('phone');
-    const list = document.getElementById('phonebook');
+function createRecord() {
+    onCreate(personInput.value, phoneInput.value);
+    personInput.value = '';
+    phoneInput.value = '';
+}
 
-    async function visualizeUsers() {
-        const data = await getUsers();
-        const users = data.map(createCard);
+function renderRecord(data) {
+    const people = data.map(rec => {
+        const li = document.createElement('li');
+        li.textContent = `${rec.person}: ${rec.phone}`;
+        li.setAttribute('data-id', rec._id);
 
-        list.replaceChildren(...users);
-    }
+        const deleteBtn = document.createElement('button');
+        deleteBtn.textContent = 'Delete';
+        deleteBtn.addEventListener('click', deleteRecord);
+        
+        li.appendChild(deleteBtn);
 
-    async function createUser() {
-        if (nameInput.value === '' || phoneInput.value === '') {
-            return;
-        }
+        return li;
+    });
 
-        fetch(url, {
-            method: 'post',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ person: nameInput.value, phone: phoneInput.value })
-        });
+    list.replaceChildren(...people);
+}
 
-        nameInput.value = '';
-        phoneInput.value = '';
+function deleteRecord(e) {
+    onDelete(e.target.parentElement.getAttribute('data-id'));
+    e.target.parentElement.remove();
+}
 
-        visualizeUsers();
-    }
+async function onLoad() {
+    const response = await fetch(url);
+    const data = await response.json();
 
-    async function getUsers() {
-        const response = await fetch(url);
-        const data = await response.json();
+    renderRecord(Object.values(data));
+}
 
-        return Object.values(data); //result[0]._id
-    }
+async function onCreate(person, phone) {
+    await fetch(url, {
+        method: 'post',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ person, phone })
+    });
+    
+    onLoad();
+}
 
-    function createCard(user) {
-        const card = document.createElement('li');
-        card.id = user._id;
-        card.textContent = `${user.person}: ${user.phone}`;
-        const btn = document.createElement('button');
-        btn.textContent = 'Delete';
-        btn.addEventListener('click', removeUser)
-        card.appendChild(btn);;
+async function onDelete(id) {
+    const response = await fetch(url + id, {
+        method: 'delete',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ person, phone })
+    });
 
-        return card;
-    }
+    const data = await response.json();
 
-    async function removeUser(e) {
-        const userId = e.target.parentElement.id;
-
-        const response = await fetch(url + '/' + userId, {
-            method: 'delete',
-        });
-
-        e.target.parentElement.remove();
-
-        return response;
-    }
+    return data;
 }
 
 attachEvents();
