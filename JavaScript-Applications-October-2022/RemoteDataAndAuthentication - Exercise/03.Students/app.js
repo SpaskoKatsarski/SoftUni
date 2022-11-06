@@ -20,11 +20,14 @@ function init() {
             return;
         }
 
-        if ( (isNaN(numberInput.value) || numberInput.value.length === 0)) {
+        const numberBool = containsOnlyNumbers(numberInput.value);
+        const gradeBool = containsOnlyNumbers(gradeInput.value);
+
+        if (isNaN(numberInput.value) || numberInput.value.length === 0 || !numberBool) {
             return;
         }
 
-        if ( (isNaN(gradeInput.value) || gradeInput.value.length === 0)) {
+        if (isNaN(gradeInput.value) || gradeInput.value.length === 0 || !gradeBool) {
             return;
         }
 
@@ -36,8 +39,35 @@ function init() {
             body: JSON.stringify({ firstName: fNameInput.value, lastName: lNameInput.value, facultyNumber: numberInput.value, grade: gradeInput.value })
         });
 
-        debugger;
+        fNameInput.value = '';
+        lNameInput.value = '';
+        numberInput.value = '';
+        gradeInput.value = '';
+        tableBody.value = '';
+
         visualizeStudents();
+    }
+
+    function containsOnlyNumbers(str) {
+        let flag = true;
+
+        for (const letter of str) {
+            if (letter !== '1' &&
+                letter !== '2' &&
+                letter !== '3' &&
+                letter !== '4' &&
+                letter !== '5' &&
+                letter !== '6' &&
+                letter !== '7' &&
+                letter !== '8' &&
+                letter !== '9' &&
+                letter !== '0') {
+                flag = false;
+                break;
+            }
+        }
+
+        return flag;
     }
 
     async function visualizeStudents() {
@@ -46,7 +76,7 @@ function init() {
 
         const result = Object.values(data).map(s => {
             const tr = document.createElement('tr');
-        
+
             const firstNameTh = document.createElement('th');
             firstNameTh.textContent = s.firstName;
 
@@ -72,4 +102,3 @@ function init() {
 }
 
 init();
-
