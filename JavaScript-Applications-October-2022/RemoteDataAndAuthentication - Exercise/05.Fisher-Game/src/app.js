@@ -39,6 +39,22 @@ function onLoadHTML() {
     }
 }
 
+//TODO: add the methods:
+// • List All Catches
+//      ◦ Endpoint - http://localhost:3030/data/catches
+//      ◦ Method: GET
+// • Create a New Catch
+//      ◦ Endpoint: http://localhost:3030/data/catches 
+//      ◦ Method: POST
+//      ◦ Request body (JSON): {"angler":"…", "weight":…, "species":"…", "location":"…", "bait":"…", "captureTime":…}
+// • Update a Catch
+//      ◦ Endpoint: http://localhost:3030/data/catches/:catchId
+//      ◦ Method: PUT
+//      ◦ Request body (JSON): {"angler":"…", "weight":…, "species":"…", "location":"…", "bait":"…", "captureTime":…}
+// • Delete a Catch
+//      ◦ Endpoint: http://localhost:3030/data/catches /:catchId
+//      ◦ Method: DELETE
+
 async function onLoadCatch() {
     const response = await fetch(catchesUrl);
     const data = await response.json();
@@ -62,7 +78,7 @@ async function onCreateCatch(body) {
 
     const response = await fetch(catchesUrl, headers);
     const data = await response.json();
-    
+
     return data;
 }
 

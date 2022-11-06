@@ -9,7 +9,6 @@ document.getElementById('user').style.display = 'none';
 
 function registerHandler(e) {
     e.preventDefault();
-    debugger;
 
     const formData = new FormData(e.target);
     const { email, password, rePass } = Object.fromEntries(formData);
@@ -41,6 +40,7 @@ async function onRegister(email, password) {
             accessToken: data.accessToken,
             id: data._id
         }));
+        
         window.location = './index.html';
 
         return data;
