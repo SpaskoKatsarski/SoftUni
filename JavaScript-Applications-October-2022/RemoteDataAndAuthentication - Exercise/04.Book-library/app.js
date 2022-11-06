@@ -2,17 +2,70 @@ const url = 'http://localhost:3030/jsonstore/collections/books/';
 const tileInput = document.querySelector('input[name="title"]');
 const authorInput = document.querySelector('input[name="author"]');
 const tableBody = document.getElementsByTagName('tbody')[0];
+const formHeader = document.querySelector('h3');
 
 document.getElementsByTagName('form')[0].addEventListener('submit', saveBook);
 document.getElementById('loadBooks').addEventListener('click', getBooks);
 
-function editBook(e) {
-    const id = e.target.parentElement.id;
+async function editBook(e) {
+    debugger;
+    const formBtn = document.querySelector('form button');
+
+    const id = e.target.parentElement.parentElement.id;
+
+    const response = await fetch(url + id);
+    const data = await response.json();
+
+    const title = data.title;
+    const author = data.author;
+
+    tileInput.value = title;
+    authorInput.value = author;
+
+    formHeader.textContent = 'Edit FORM';
+    formBtn.textContent = 'Save';
+    formBtn.addEventListener('click', update);
+
+    async function update() {
+        debugger;
+
+        const title = tileInput.value;
+        const author = authorInput.value;
+
+        if (!title || !author) {
+            return;
+        }
+
+        await fetch(url + id, {
+            method: 'put',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                author: `${author}`,
+                title: `${title}`,
+                _id: id
+            })
+        });
+
+        formHeader.textContent = 'FORM';
+        formBtn.textContent = 'Submit';
+
+        formBtn.removeEventListener('click', update);
+    }
+}
+
+async function onDelete(id) {
+    await fetch(url + id, {
+        method: 'delete'
+    });
 }
 
 async function deleteBook(e) {
-    const id = e.target.parentElement.id;
-    console.log(id)
+    const id = e.target.parentElement.parentElement.id;
+    document.getElementById(id).remove();
+
+    onDelete(id);
 }
 
 async function saveBook(e) {
@@ -41,7 +94,8 @@ async function createBook(book) {
     });
 
     const data = await response.json();
-    console.log(data._id);
+
+    return data;
 }
 
 async function modifyBook(id) {
@@ -52,11 +106,18 @@ async function modifyBook(id) {
 }
 
 async function getBooks() {
+    debugger;
     const response = await fetch(url);
     const data = await response.json();
 
     const books = Object.values(data).map(b => {
+
+        if (!b.hasOwnProperty('title') || !b.hasOwnProperty('author')) {
+            return;
+        }
+
         const tr = document.createElement('tr');
+        tr.id = b._id;
 
         const titleTd = document.createElement('td');
         titleTd.textContent = b.title;
