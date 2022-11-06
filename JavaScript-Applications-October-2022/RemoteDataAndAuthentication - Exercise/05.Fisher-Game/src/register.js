@@ -5,14 +5,16 @@ const notificationParagraph = document.querySelector('p.notification');
 document.getElementById('register-form').addEventListener('submit', registerHandler);
 document.querySelectorAll('a').forEach(x => x.classList.remove('active'));
 document.getElementById('register').classList.add('active');
+document.getElementById('user').style.display = 'none';
 
 function registerHandler(e) {
     e.preventDefault();
+    debugger;
 
     const formData = new FormData(e.target);
-    const { email, password, rePassword } = Object.fromEntries(formData);
+    const { email, password, rePass } = Object.fromEntries(formData);
 
-    if (password !== rePassword) {
+    if (password !== rePass) {
         notificationParagraph.textContent = 'Error'
 
         setTimeout(() => {
@@ -34,8 +36,11 @@ async function onRegister(email, password) {
             throw new Error(data.message);
         }
 
-        sessionStorage.setItem('email', data.email);
-        sessionStorage.setItem('accessToken', data.accessToken);
+        sessionStorage.setItem('userData', JSON.stringify({
+            email: data.email,
+            accessToken: data.accessToken,
+            id: data._id
+        }));
         window.location = './index.html';
 
         return data;
