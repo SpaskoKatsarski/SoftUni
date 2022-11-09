@@ -2,6 +2,7 @@ const section = document.getElementById('detailsView');
 const main = document.getElementsByTagName('main')[0];
 const form = section.querySelector('form');
 form.addEventListener('submit', onSubmit);
+const themeContentWrapper = document.getElementById('theme-content-wrapper');
 
 section.remove();
 
@@ -20,14 +21,61 @@ export async function showDetails(e) {
 
     const topic = await loadTopic(id);
     const comments = await loadComment(id);
-    const result = topicTemplate(topic, Object.values(comments));
 
-    section.replaceChildren(result);
+    const result = topicTemplate(topic, comments);
+    themeContentWrapper.replaceChildren(result)
     main.replaceChildren(section);
 }
 
 function topicTemplate(topic, comments) {
-    debugger;
+    const topicContainer = document.createElement('div');
+    topicContainer.classList.add('theme-title');
+    topicContainer.innerHTML = `
+                    <div class="theme-title">
+                        <div class="theme-name-wrapper">
+                            <div class="theme-name">
+                                <h2>${topic.topicName}</h2>
+
+                            </div>
+
+                        </div>
+                    </div>`;
+
+    const commentContainer = document.createElement('div');
+    commentContainer.classList.add('comment');
+    commentContainer.innerHTML = `
+        <div class="header">
+            <img src="./static/profile.png" alt="avatar">
+            <p><span>${topic.username}</span> posted on <time>${topic.date}</time></p>
+
+        <p class="post-content">${topic.postText}</p>
+        </div>
+    `;
+
+    Object.values(comments).forEach(c => {
+        const comment = createComment(c);
+        commentContainer.appendChild(comment);
+    });
+
+    return commentContainer;
+}
+
+function createComment(data) {
+    const container = document.createElement('div');
+
+    container.classList.add('user-comment');
+    container.innerHTML =`
+        <div class="topic-name-wrapper">
+            <div class="topic-name">
+                <p><strong>${data.username}</strong> commented on <time>${data.date}</time></p>
+                <div class="post-content">
+                    <p>${data.postText}</p>
+                </div>
+            </div>
+        </div>
+        `;
+
+    return container;
 }
 
 async function onSubmit(e) {
@@ -37,7 +85,7 @@ async function onSubmit(e) {
 
     const { postText, username } = Object.fromEntries(formData);
 
-    await createPost({ postText, username, id })
+    await createPost({ postText, username, id, date: new Date() })
 }
 
 async function createPost(body) {
