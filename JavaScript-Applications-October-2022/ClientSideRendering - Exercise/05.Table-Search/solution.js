@@ -9,10 +9,7 @@ function solve() {
    document.querySelector('#searchBtn').addEventListener('click', onClick);
 
    function onClick() {
-      const text = input.value;
-
-      //add select if includes the string
-      //remove select if it doesnt
+      const text = input.value.toLowerCase();
 
       update(text);
 
@@ -44,10 +41,10 @@ function solve() {
          </tr>`;
       }
 
-      if (firstName.includes(match)
-      || lastName.includes(match)
-      || email.includes(match)
-      || course.includes(match)) {
+      if (firstName.toLowerCase().includes(match)
+      || lastName.toLowerCase().includes(match)
+      || email.toLowerCase().includes(match)
+      || course.toLowerCase().includes(match)) {
          return html`
          <tr class="select">
             <td>${firstName} ${lastName}</td>
