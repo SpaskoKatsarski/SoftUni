@@ -7,6 +7,7 @@ const btn = document.getElementById('btnLoadTowns');
 btn.addEventListener('click', onSubmit);
 
 function onSubmit() {
+    debugger;
     const towns = document.getElementById('towns').value.split(', ')
 
     if (towns.length === 1 && towns[0] === '') {
