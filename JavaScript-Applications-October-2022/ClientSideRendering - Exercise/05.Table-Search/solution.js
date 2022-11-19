@@ -41,10 +41,11 @@ function solve() {
          </tr>`;
       }
 
-      if (firstName.toLowerCase().includes(match)
+      if (match !== ''
+      && (firstName.toLowerCase().includes(match)
       || lastName.toLowerCase().includes(match)
       || email.toLowerCase().includes(match)
-      || course.toLowerCase().includes(match)) {
+      || course.toLowerCase().includes(match))) {
          return html`
          <tr class="select">
             <td>${firstName} ${lastName}</td>
