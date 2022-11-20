@@ -1,3 +1,3 @@
-export function showHome(ctx, next) {
+export function showHome(ctx) {
     ctx.render('Home Page');
 }

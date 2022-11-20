@@ -1,3 +1,3 @@
-export function notFound(ctx, next) {
+export function notFound(ctx) {
     ctx.render('404 Not Found');
 }

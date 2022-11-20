@@ -1,3 +1,3 @@
-export function showContact(ctx, next) {
+export function showContact(ctx) {
     ctx.render('Contacts');
 }

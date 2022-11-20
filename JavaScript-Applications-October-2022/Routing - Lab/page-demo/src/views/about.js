@@ -1,3 +1,3 @@
-export function showAbout(ctx, next) {
+export function showAbout(ctx) {
     ctx.render('About');
 }
