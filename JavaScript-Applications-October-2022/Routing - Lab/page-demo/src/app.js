@@ -4,6 +4,7 @@ import { showHome } from './views/home.js';
 import { showCatalog } from './views/catalog.js';
 import { showContact } from './views/contact.js';
 import { notFound } from './views/notFound.js';
+import { showAbout } from './views/about.js';
 
 page((ctx, next) => {
     ctx.render = (content) => document.querySelector('main').innerHTML = `<h2>${content}</h2>`;
@@ -14,6 +15,7 @@ page('/index.html', '/');
 page('/', showHome);
 page('/catalog', showCatalog);
 page('/contact', showContact);
+page('/about', showAbout)
 page('*', notFound);
 
 page.start();
