@@ -24,21 +24,22 @@ const loginTemp = html`
         </div>
     </form>`
 
-let page = null;
+let context = null;
 
 export async function showLogin(ctx) {
-    page = ctx.page;
+    context = ctx;
     ctx.render(loginTemp);
 }
 
-function onSubmit(e) {
+async function onSubmit(e) {
     e.preventDefault();
 
     const formData = new FormData(e.target);
     const { email, password } = Object.fromEntries(formData);
 
-    login(email, password);
+    await login(email, password);
 
-    page.redirect('/');
     e.target.reset();
+    context.updateNav();
+    context.page.redirect('/');
 }

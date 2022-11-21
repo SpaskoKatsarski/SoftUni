@@ -29,11 +29,11 @@ const registerTemp = html`
 </form>
 `;
 
-let page = null;
+let context = null;
 
 export async function showRegister(ctx) {
     ctx.render(registerTemp);
-    page = ctx.page;
+    context = ctx;
 }
 
 async function onSubmit(e) {
@@ -42,16 +42,21 @@ async function onSubmit(e) {
     const formData = new FormData(e.target);
     const { email, password, rePass } = Object.fromEntries(formData);
 
+    //
+    //TODO: Make validation
+
     if (password !== rePass) {
         alert('Passwords do not match!');
         e.target.reset();
         return;
     }
 
-    //TODO: Make validation
+    // 
+    //
 
-    register(email, password);
+    await register(email, password);
 
+    context.updateNav();
+    context.page.redirect('/');
     e.target.reset();
-    page.redirect('/');
 }

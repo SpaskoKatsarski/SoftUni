@@ -9,6 +9,10 @@ async function request(url, options) {
             throw new Error(error.message);
         }
 
+        if (response.status === 204) {
+            return response;
+        }
+
         const data = await response.json();
 
         return data;
@@ -24,7 +28,6 @@ function getOption(method, body) {
         headers: {}
     };
 
-    //try with sessionStorage
     const user = JSON.parse(sessionStorage.getItem('userData'));
 
     if (user) {
