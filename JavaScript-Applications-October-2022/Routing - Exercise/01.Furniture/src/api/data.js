@@ -66,7 +66,7 @@ export async function deleteItem(id) {
 // My Furniture (GET): http://localhost:3030/data/catalog?where=_ownerId%3D%22{userId}%22
 export async function getMyItems() {
     const id = JSON.parse(sessionStorage.getItem('userData'))._id;
-    const res = await api.get(endPoints.catalog + `?where=_ownerId%3D%22${id}%22`)
+    const res = await api.get(endPoints.catalog + `?where=_ownerId%3D%22${id}%22`);
 
     return res;
 }
