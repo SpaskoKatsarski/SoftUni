@@ -13,7 +13,7 @@ public class StartUp
     {
         SoftUniContext dbContext = new SoftUniContext();
 
-        string result = RemoveTown(dbContext);
+        string result = GetAddressesByTown(dbContext);
         Console.WriteLine(result);
     }
 
@@ -42,7 +42,7 @@ public class StartUp
         return sb.ToString().TrimEnd();
     }
 
-    //Problem 4 ?
+    //Problem 4
     public static string GetEmployeesWithSalaryOver50000(SoftUniContext context)
     {
         StringBuilder sb = new StringBuilder();
@@ -59,7 +59,7 @@ public class StartUp
 
         foreach (var e in employees)
         {
-            sb.AppendLine($"{e.FirstName} – {e.Salary:f2}");
+            sb.AppendLine($"{e.FirstName} - {e.Salary:f2}");
         }
 
         return sb.ToString().TrimEnd();
@@ -91,34 +91,28 @@ public class StartUp
         return sb.ToString().TrimEnd();
     }
 
-    //Problem 6 ?
+    //Problem 6 
     public static string AddNewAddressToEmployee(SoftUniContext context)
     {
-        StringBuilder sb = new StringBuilder();
-
         Address address = new Address
         {
             AddressText = "Vitoshka 15",
             TownId = 4
         };
 
-        context.Employees.First(e => e.LastName == "Nakov").Address = address;
+        Employee? employee = context.Employees
+            .FirstOrDefault(e => e.LastName == "Nakov");
+        employee.Address = address;
+
+        context.SaveChanges();
 
         var addressTexts = context.Employees
             .OrderByDescending(e => e.AddressId)
             .Take(10)
-            .Select(e => new
-            {
-                Text = e.Address.AddressText
-            })
+            .Select(e => e.Address!.AddressText)
             .ToArray();
 
-        foreach (var at in addressTexts)
-        {
-            sb.AppendLine(at.Text);
-        }
-
-        return sb.ToString().TrimEnd();
+        return String.Join(Environment.NewLine, addressTexts);
     }
 
     //Problem 7
@@ -178,7 +172,7 @@ public class StartUp
 
         foreach (var a in addresses)
         {
-            sb.AppendLine($"{a.AddressText}, {a.TownName} - {a.EmployeesCount}");
+            sb.AppendLine($"{a.AddressText}, {a.TownName} - {a.EmployeesCount} employees");
         }
 
         return sb.ToString().TrimEnd();
