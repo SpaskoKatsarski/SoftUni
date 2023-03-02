@@ -62,7 +62,8 @@ public class StudentSystemContext : DbContext
 
         modelBuilder.Entity<StudentCourse>(entity =>
         {
-            entity.HasKey(sc => new { sc.StudentId, sc.CourseId });
+            entity
+            .HasKey(sc => new { sc.StudentId, sc.CourseId });
         });
     }
 }
