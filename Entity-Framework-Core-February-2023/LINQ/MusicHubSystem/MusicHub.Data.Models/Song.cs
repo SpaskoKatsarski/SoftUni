@@ -30,9 +30,9 @@ public class Song
     public virtual Album Album { get; set; } = null!;
 
     [ForeignKey(nameof(Writer))]
-    public int WriterId { get; set; }
+    public int? WriterId { get; set; }
 
-    public virtual Writer Writer { get; set; } = null!;
+    public virtual Writer? Writer { get; set; }
 
     public decimal Price { get; set; }
 

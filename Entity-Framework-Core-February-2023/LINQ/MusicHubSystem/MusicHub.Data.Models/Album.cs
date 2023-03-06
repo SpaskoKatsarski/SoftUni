@@ -21,9 +21,9 @@ public class Album
     public decimal Price => this.Songs.Sum(s => s.Price);
 
     [ForeignKey(nameof(Producer))]
-    public int ProducerId { get; set; }
+    public int? ProducerId { get; set; }
 
-    public virtual Producer Producer { get; set; } = null!;
+    public virtual Producer? Producer { get; set; }
 
     public virtual ICollection<Song> Songs { get; set; }
 }
