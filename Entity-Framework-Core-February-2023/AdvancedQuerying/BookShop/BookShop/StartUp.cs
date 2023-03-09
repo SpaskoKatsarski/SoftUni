@@ -3,10 +3,11 @@
     using System.Linq;
     using System.Text;
     using Microsoft.EntityFrameworkCore;
+    using System.Diagnostics;
 
     using Data;
     using Initializer;
-    using BookShop.Models.Enums;
+    using Models.Enums;
 
     public class StartUp
     {
@@ -15,7 +16,13 @@
             using var db = new BookShopContext();
             DbInitializer.ResetDatabase(db);
 
-            string result = GetGoldenBooks(db);
+            Stopwatch sw = new Stopwatch();
+
+            sw.Start();
+            string result = GetMostRecentBooks(db);
+            sw.Stop();
+
+            Console.WriteLine(sw.ElapsedMilliseconds);
             Console.WriteLine(result);
         }
 
