@@ -2,7 +2,7 @@
 
 using System.Linq;
 using System.Text;
-
+using BookShop.Models;
 using Data;
 using Initializer;
 using Microsoft.EntityFrameworkCore;
@@ -256,6 +256,18 @@ public class StartUp
         }
 
         return sb.ToString().TrimEnd();
+    }
+
+    // Problem 15
+    public static void IncreasePrices(BookShopContext context)
+    {
+        var books = context.Books
+            .Where(b => b.ReleaseDate.Value.Year < 2010);
+
+        foreach (var book in books)
+        {
+            book.Price += 5;
+        }
     }
 
     // Problem 16
