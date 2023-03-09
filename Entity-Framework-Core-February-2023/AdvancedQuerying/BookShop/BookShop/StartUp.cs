@@ -6,6 +6,7 @@
 
     using Data;
     using Initializer;
+    using BookShop.Models.Enums;
 
     public class StartUp
     {
@@ -14,28 +15,34 @@
             using var db = new BookShopContext();
             DbInitializer.ResetDatabase(db);
 
-            string result = GetMostRecentBooks(db);
+            string result = GetGoldenBooks(db);
             Console.WriteLine(result);
         }
 
         // Problem 02
         public static string GetBooksByAgeRestriction(BookShopContext context, string command)
         {
-            var books = context.Books
-                .AsEnumerable()
-                .Where(b => b.AgeRestriction.ToString().ToLower() == command.ToLower())
+            try
+            {
+                var bookTitles = context.Books
+                .Where(b => b.AgeRestriction == Enum.Parse<AgeRestriction>(command.ToLower(), true))
                 .Select(b => b.Title)
-                .OrderBy(t => t);
+                .OrderBy(t => t)
+                .ToArray();
 
-            return String.Join(Environment.NewLine, books);
+                return String.Join(Environment.NewLine, bookTitles);
+            }
+            catch (Exception e)
+            {
+                return e.Message;
+            }
         }
 
         // Problem 03
         public static string GetGoldenBooks(BookShopContext context)
         {
             var books = context.Books
-                .AsEnumerable()
-                .Where(b => b.EditionType.ToString() == "Gold" &&
+                .Where(b => b.EditionType == EditionType.Gold &&
                        b.Copies < 5000)
                 .OrderBy(b => b.BookId)
                 .Select(b => b.Title);
@@ -137,10 +144,10 @@
         public static string GetAuthorNamesEndingIn(BookShopContext context, string input)
         {
             string[] authorsFullNames = context.Authors
-                .AsEnumerable()
                 .Where(a => a.FirstName.EndsWith(input))
+                .OrderBy(a => a.FirstName)
+                .ThenBy(a => a.LastName)
                 .Select(a => $"{a.FirstName} {a.LastName}")
-                .OrderBy(a => a)
                 .ToArray();
 
             return String.Join(Environment.NewLine, authorsFullNames);
@@ -224,7 +231,7 @@
             return sb.ToString().TrimEnd();
         }
 
-        // Problem 14 ?
+        // Problem 14
         public static string GetMostRecentBooks(BookShopContext context)
         {
             StringBuilder sb = new StringBuilder();
