@@ -4,11 +4,11 @@
     using AutoMapper;
     using System.Globalization;
     using Microsoft.EntityFrameworkCore;
+    using Newtonsoft.Json.Serialization;
 
     using Data;
     using Models;
     using DTOs.Import;
-    using Newtonsoft.Json.Serialization;
 
     public class StartUp
     {
