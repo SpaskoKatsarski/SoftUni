@@ -9,7 +9,7 @@
         public string Model { get; set; } = null!;
 
         [JsonProperty("traveledDistance")]
-        public long TravelledDistance { get; set; }
+        public long TraveledDistance { get; set; }
 
         public int[] PartsId { get; set; }
     }
