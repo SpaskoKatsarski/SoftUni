@@ -19,7 +19,7 @@
 
             //string input = File.ReadAllText("../../../Datasets/categories-products.xml");
 
-            Console.WriteLine(GetSoldProducts(context));
+            Console.WriteLine(GetUsersWithProducts(context));
         }
 
         // Problem 01
@@ -125,16 +125,18 @@
             var mapper = CreateMapper();
             XmlHelper xmlHelper = new XmlHelper();
 
-            var products = context.Products
+            var products = context
+                .Products
                 .Where(p => p.Price >= 500 && p.Price <= 1000)
-                .Take(10)
                 .OrderBy(p => p.Price)
+                .Take(10)
                 .ProjectTo<ExportProductDto>(mapper.ConfigurationProvider)
                 .ToArray();
 
-            string productsAsXml = xmlHelper.Serialize<ExportProductDto[]>(products, "Products");
+            var resultXml = xmlHelper.Serialize<ExportProductDto[]>(products, "Products")
+                .Replace("<buyer> </buyer>", String.Empty);
 
-            return productsAsXml;
+            return Regex.Replace(resultXml, @"^\s+$[\r\n]*", string.Empty, RegexOptions.Multiline);
         }
 
         // Problem 06 ?
@@ -144,16 +146,61 @@
             XmlHelper xmlHelper = new XmlHelper();
 
             var users = context.Users
-                .Where(u => u.ProductsSold.Count > 0)
+                .Where(u => u.ProductsSold.Count >= 1)
                 .OrderBy(u => u.LastName)
                 .ThenBy(u => u.FirstName)
+                .Take(5)
                 .ProjectTo<ExportUserDto>(mapper.ConfigurationProvider)
                 .ToArray();
 
             return xmlHelper.Serialize<ExportUserDto[]>(users, "Users");
         }
 
+        // Problem 07 ?
+        public static string GetCategoriesByProductsCount(ProductShopContext context)
+        {
+            var mapper = CreateMapper();
+            XmlHelper xmlHelper = new XmlHelper();
 
+            var categories = context.Categories
+                .OrderByDescending(c => c.CategoryProducts.Count)
+                .ThenByDescending(c => c.CategoryProducts.Sum(cp => cp.Product.Price))
+                .ProjectTo<ExportCategoryByProductsCountDto>(mapper.ConfigurationProvider)
+                .ToArray();
+
+            return xmlHelper.Serialize<ExportCategoryByProductsCountDto[]>(categories, "Categories");
+        }
+
+        // Problem 08 ?
+        public static string GetUsersWithProducts(ProductShopContext context)
+        {
+            XmlHelper xmlHelper = new XmlHelper();
+
+            var users = context.Users
+                .Where(u => u.ProductsSold.Count > 0)
+                .OrderByDescending(u => u.ProductsSold.Count)
+                .Take(10)
+                .Select(u => new ExportUserWithProductsDto
+                {
+                    FirstName = u.FirstName,
+                    LastName = u.LastName,
+                    Age = u.Age,
+                    SoldProducts = new ExportSoldProductsDto
+                    {
+                        Count = u.ProductsSold.Count,
+                        Products = u.ProductsSold.Select(ps => new ExportSoldProduct2
+                        {
+                            Name = ps.Name,
+                            Price = ps.Price
+                        })
+                        .OrderByDescending(p => p.Price)
+                        .ToArray()
+                    }
+                })
+                .ToArray();
+
+            return xmlHelper.Serialize<ExportUserWithProductsDto[]>(users, "Users");
+        }
 
         private static IMapper CreateMapper()
         {

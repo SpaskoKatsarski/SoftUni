@@ -12,7 +12,7 @@
         public string Name { get; set; } = null!;
 
         [XmlElement("price")]
-        public decimal Price { get; set; }
+        public double Price { get; set; }
 
         [XmlElement("buyer")]
         public string? Buyer { get; set; }
