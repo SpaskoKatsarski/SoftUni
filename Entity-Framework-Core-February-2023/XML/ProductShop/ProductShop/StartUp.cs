@@ -19,7 +19,7 @@
 
             //string input = File.ReadAllText("../../../Datasets/categories-products.xml");
 
-            Console.WriteLine(GetUsersWithProducts(context));
+            Console.WriteLine(GetSoldProducts(context));
         }
 
         // Problem 01
@@ -139,7 +139,7 @@
             return Regex.Replace(resultXml, @"^\s+$[\r\n]*", string.Empty, RegexOptions.Multiline);
         }
 
-        // Problem 06 ?
+        // Problem 06
         public static string GetSoldProducts(ProductShopContext context)
         {
             var mapper = CreateMapper();

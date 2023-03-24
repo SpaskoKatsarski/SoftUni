@@ -11,7 +11,7 @@
         [XmlElement("lastName")]
         public string LastName { get; set; } = null!;
 
-        [XmlElement("soldProducts")]
-        public ICollection<ExportSoldProductDto> SoldProducts { get; set; } = null!;
+        [XmlArray("soldProducts")]
+        public ExportSoldProductDto[] SoldProducts { get; set; } = null!;
     }
 }

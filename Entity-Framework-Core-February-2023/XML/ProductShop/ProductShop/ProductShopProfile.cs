@@ -22,6 +22,7 @@
             this.CreateMap<Product, ExportProductDto>()
                 .ForMember(d => d.Price, opt => opt.MapFrom(s => (double)s.Price))
                 .ForMember(d => d.Buyer, opt => opt.MapFrom(s => $"{s.Buyer.FirstName} {s.Buyer.LastName}"));
+            this.CreateMap<Product, ExportSoldProductDto>();
 
             // Categories
             this.CreateMap<ImportCategoryDto, Category>();
