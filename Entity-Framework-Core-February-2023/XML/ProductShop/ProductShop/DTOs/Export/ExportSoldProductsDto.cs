@@ -8,7 +8,7 @@
         [XmlElement("count")]
         public int Count { get; set; }
 
-        [XmlElement("products")]
+        [XmlArray("products")]
         public ICollection<ExportSoldProduct2> Products { get; set; } = null!;
     }
 }
