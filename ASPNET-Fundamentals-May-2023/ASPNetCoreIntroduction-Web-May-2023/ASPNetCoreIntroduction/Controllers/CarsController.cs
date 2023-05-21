@@ -18,6 +18,7 @@
         [HttpGet]
         public IActionResult Add()
         {
+            ViewBag.Message = "Hello from app!";
             return View();
         }
 
