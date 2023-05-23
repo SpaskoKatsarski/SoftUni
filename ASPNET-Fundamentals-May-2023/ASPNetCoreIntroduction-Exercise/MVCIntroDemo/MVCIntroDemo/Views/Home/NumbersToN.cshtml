@@ -1,0 +1,26 @@
+﻿@{
+    ViewBag.Title = "Numbers 1  ... " + ViewBag.Count;
+}
+
+<h2>@ViewBag.Title</h2>
+<ul>
+    @{
+        if (ViewBag.Count == 0)
+        {
+            <li>Zero numbers!</li>
+        }
+        else
+        {
+            for (int i = 1; i <= ViewBag.Count; i++)
+            {
+                <li>@i</li>
+            }
+        }
+    }
+</ul>
+
+<form method="post">
+    <input type="text" name="count" value="3" />
+    <input type="submit" value="Submit" />
+</form>
+
