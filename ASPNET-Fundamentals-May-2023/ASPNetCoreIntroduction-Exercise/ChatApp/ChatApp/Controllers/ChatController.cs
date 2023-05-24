@@ -16,17 +16,29 @@ namespace ChatApp.Controllers
                 return View(new ChatViewModel());
             }
 
-            //TODO: implement the logic
             var chatModel = new ChatViewModel()
             {
-                
+                Messages = this.messages
+                .Select(m => new MessageViewModel()
+                {
+                    Sender = m.Key,
+                    MessageText = m.Value
+                })
+                .ToList()
             };
+
+            return View(chatModel);
         }
 
         [HttpPost]
-        public IActionResult Send()
+        public IActionResult Send(ChatViewModel chat)
         {
+            var newMessage = chat.CurrentMessage;
 
+            this.messages.Add(new KeyValuePair<string, string>
+                (newMessage.Sender, newMessage.MessageText));
+
+            return RedirectToAction("Show");
         }
     }
 }
