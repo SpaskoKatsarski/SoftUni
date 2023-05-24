@@ -6,19 +6,19 @@ namespace ChatApp.Controllers
 {
     public class ChatController : Controller
     {
-        private readonly ICollection<KeyValuePair<string, string>> messages = 
+        private static ICollection<KeyValuePair<string, string>> messages = 
             new List<KeyValuePair<string, string>>();
 
         public IActionResult Show()
         {
-            if (this.messages.Count < 1)
+            if (messages.Count < 1)
             {
                 return View(new ChatViewModel());
             }
 
             var chatModel = new ChatViewModel()
             {
-                Messages = this.messages
+                Messages = messages
                 .Select(m => new MessageViewModel()
                 {
                     Sender = m.Key,
@@ -35,7 +35,7 @@ namespace ChatApp.Controllers
         {
             var newMessage = chat.CurrentMessage;
 
-            this.messages.Add(new KeyValuePair<string, string>
+            messages.Add(new KeyValuePair<string, string>
                 (newMessage.Sender, newMessage.MessageText));
 
             return RedirectToAction("Show");
