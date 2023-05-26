@@ -14,11 +14,8 @@ namespace TextSplitterApp.Controllers
         }
 
         public IActionResult Index(TextViewModel model)
-            => View(model);
-
-        public IActionResult Privacy()
         {
-            return View();
+            return View(model);
         }
 
         [HttpPost]
@@ -26,21 +23,17 @@ namespace TextSplitterApp.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return View(model);
+                return RedirectToAction("Index", model);
             }
 
-            var splitText = model.Text
-                .Split(" ", StringSplitOptions.RemoveEmptyEntries);
+            string[] words = model.Text.Split(' ',
+                StringSplitOptions.RemoveEmptyEntries);
 
-            model.SplitText = String.Join(Environment.NewLine, splitText);
+            string splitText = String.Join(Environment.NewLine, words);
+            //model.Text = string.Empty;
+            model.SplitText = splitText;
 
             return RedirectToAction("Index", model);
-        }
-
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
     }
 }
