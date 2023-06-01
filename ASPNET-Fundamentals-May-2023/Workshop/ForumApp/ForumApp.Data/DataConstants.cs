@@ -2,7 +2,10 @@
 {
     public static class DataConstants
     {
-        public const int TitleMaxLength = 50;
-        public const int ContentMaxLength = 1500; 
+        public static class Post
+        {
+            public const int TitleMaxLength = 50;
+            public const int ContentMaxLength = 1500;
+        }
     }
 }

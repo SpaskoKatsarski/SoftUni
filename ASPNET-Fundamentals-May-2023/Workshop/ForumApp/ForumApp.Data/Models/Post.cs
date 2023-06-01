@@ -2,17 +2,19 @@
 {
     using System.ComponentModel.DataAnnotations;
 
+    using static ForumApp.Data.DataConstants.Post;
+
     public class Post
     {
         [Key]
         public int Id { get; set; }
 
         [Required]
-        [MaxLength(DataConstants.TitleMaxLength)]
+        [MaxLength(TitleMaxLength)]
         public string Title { get; set; } = null!;
 
         [Required]
-        [StringLength(DataConstants.ContentMaxLength)]
+        [StringLength(ContentMaxLength)]
         public string Content { get; set; } = null!;
     }
 }
