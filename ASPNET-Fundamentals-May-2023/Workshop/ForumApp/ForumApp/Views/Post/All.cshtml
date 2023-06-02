@@ -24,7 +24,7 @@
                             <a asp-controller="Post" asp-action="Edit" asp-route-id="@post.Id" class="btn btn-warning">Edit</a>
                             <form class="mt-2" asp-controller="Post" asp-action="Delete" asp-route-id="@post.Id">
                                 <div class="d-grid gap-2">
-                                    <input type="submit" value="Delete" class="btn btn-danger nb-2" onclick="return confirm(Are you sure you want to delete the post with title: '@post.Title')" />
+                                    <input id="deleteBtn" type="submit" value="Delete" class="btn btn-danger nb-2" onclick="return confirm('Are you sure you want to delete the post with title: @post.Title?')" />
                                 </div>
                             </form>
                         </div>
