@@ -26,7 +26,7 @@
         [ForeignKey(nameof(Board))]
         public int BoardId { get; set; }
 
-        public Board? Board { get; set; } = null!;
+        public Board Board { get; set; } = null!;
 
         [Required]
         public string OwnerId { get; set; } = null!;
