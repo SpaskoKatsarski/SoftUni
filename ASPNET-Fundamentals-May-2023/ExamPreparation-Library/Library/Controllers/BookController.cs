@@ -39,6 +39,7 @@
         [HttpPost]
         public async Task<IActionResult> Add(BookFormViewModel model)
         {
+            //TODO: continue
             if (!ModelState.IsValid)
             {
                 return View(model);
