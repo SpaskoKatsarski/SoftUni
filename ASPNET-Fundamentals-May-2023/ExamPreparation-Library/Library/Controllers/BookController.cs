@@ -5,6 +5,8 @@
 
     using Library.Services.Contracts;
     using Library.ViewModels.Book;
+    using System.Security.Claims;
+    using System.ComponentModel;
 
     [Authorize]
     public class BookController : Controller
@@ -39,7 +41,6 @@
         [HttpPost]
         public async Task<IActionResult> Add(BookFormViewModel model)
         {
-            //TODO: continue
             if (!ModelState.IsValid)
             {
                 return View(model);
@@ -48,6 +49,58 @@
             await this.bookService.AddAsync(model);
 
             return RedirectToAction(nameof(All));
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> AddToCollection(int id)
+        {
+            var book = await this.bookService.GetByIdAsync(id);
+
+            if (book == null)
+            {
+                return RedirectToAction("All", "Book");
+            }
+
+            var userId = User.Claims
+                .FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier).Value;
+
+            if (userId == null)
+            {
+                return StatusCode(500);
+            }
+
+            await this.bookService.AddBookToUserAsync(book.Id, userId);
+
+            return RedirectToAction("All", "Book");
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Mine()
+        {
+            var userId = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier).Value;
+
+            if (userId == null)
+            {
+                return StatusCode(500);
+            }
+
+            var books = await this.bookService.GetBooksForUserAsync(userId);
+
+            return View(books);
+        }
+
+        public async Task<IActionResult> RemoveFromCollection(int id)
+        {
+            var userId = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier).Value;
+
+            if (userId == null)
+            {
+                return StatusCode(500);
+            }
+
+            await this.bookService.RemoveFromUserAsync(id, userId);
+
+            return RedirectToAction("Mine", "Book");
         }
     }
 }
