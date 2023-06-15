@@ -1,12 +1,12 @@
 ﻿namespace Library.Controllers
 {
+    using System.Security.Claims;
+
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Authorization;
 
     using Library.Services.Contracts;
     using Library.ViewModels.Book;
-    using System.Security.Claims;
-    using System.ComponentModel;
 
     [Authorize]
     public class BookController : Controller
