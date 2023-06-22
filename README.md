@@ -9,3 +9,4 @@
 4. [**JavaScript Applications October 2022**](https://github.com/SpaskoKatsarski/SoftUni/tree/main/JavaScript-Applications-October-2022)
 5. [**MS SQL January 2023**](https://github.com/SpaskoKatsarski/SoftUni/tree/main/MSSQL-January-2023)
 6. [**Entity Framework Core February 2023**](https://github.com/SpaskoKatsarski/SoftUni/tree/main/Entity-Framework-Core-February-2023)
+7. [**ASP .NET Core Fund May 2023**](https://github.com/SpaskoKatsarski/SoftUni/tree/main/ASPNET-Fundamentals-May-2023)
