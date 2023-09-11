@@ -3,6 +3,7 @@
     using System;
     using System.Collections;
     using System.Collections.Generic;
+    using System.Linq;
 
     public class SinglyLinkedList<T> : IAbstractLinkedList<T>
     {
@@ -77,6 +78,11 @@
 
         public T GetLast()
         {
+            if (this.Count == 0)
+            {
+                throw new InvalidOperationException("There are no elements in the collection!");
+            }
+
             Node node = this.head;
 
             while (node.Next != null)
@@ -112,6 +118,8 @@
             {
                 T value = this.head.Value;
                 this.head = null;
+
+                this.Count--;
 
                 return value;
             }

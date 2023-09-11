@@ -1,4 +1,15 @@
-﻿// Stack
+﻿// List
+Console.WriteLine("List operations:");
+Console.WriteLine();
+var list = new Problem01.List.List<int>();
+
+list.Add(1);
+list.Remove(1);
+Console.WriteLine(list.Count);
+
+Console.WriteLine("==============================");
+
+// Stack
 Console.WriteLine("Stack operations:");
 Console.WriteLine();
 

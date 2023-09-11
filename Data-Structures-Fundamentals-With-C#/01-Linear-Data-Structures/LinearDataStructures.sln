@@ -11,8 +11,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Problem03.Queue", "Problem0
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Problem04.SinglyLinkedList", "Problem04.SinglyLinkedList\Problem04.SinglyLinkedList.csproj", "{00140E66-BAA9-46EE-A654-D9B3619A2BF3}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Problem04.SinglyLinkedList.Tests", "Problem04.SinglyLinkedList.Tests\Problem04.SinglyLinkedList.Tests.csproj", "{9F4840C3-2C4A-419C-9604-7095CB830597}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LinearDataStructures", "LinearDataStructures\LinearDataStructures.csproj", "{578C87AB-D630-47A8-AF90-653C97CECCDD}"
 EndProject
 Global
@@ -37,10 +35,6 @@ Global
 		{00140E66-BAA9-46EE-A654-D9B3619A2BF3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{00140E66-BAA9-46EE-A654-D9B3619A2BF3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{00140E66-BAA9-46EE-A654-D9B3619A2BF3}.Release|Any CPU.Build.0 = Release|Any CPU
-		{9F4840C3-2C4A-419C-9604-7095CB830597}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9F4840C3-2C4A-419C-9604-7095CB830597}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9F4840C3-2C4A-419C-9604-7095CB830597}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9F4840C3-2C4A-419C-9604-7095CB830597}.Release|Any CPU.Build.0 = Release|Any CPU
 		{578C87AB-D630-47A8-AF90-653C97CECCDD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{578C87AB-D630-47A8-AF90-653C97CECCDD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{578C87AB-D630-47A8-AF90-653C97CECCDD}.Release|Any CPU.ActiveCfg = Release|Any CPU
