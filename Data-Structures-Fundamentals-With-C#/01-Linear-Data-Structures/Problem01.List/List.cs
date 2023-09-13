@@ -28,12 +28,12 @@
             get
             {
                 this.ValidateIndex(index);
-                return this[index];
+                return this.items[index];
             }
             set
             {
                 this.ValidateIndex(index);
-                this[index] = value;
+                this.items[index] = value;
             }
         }
 

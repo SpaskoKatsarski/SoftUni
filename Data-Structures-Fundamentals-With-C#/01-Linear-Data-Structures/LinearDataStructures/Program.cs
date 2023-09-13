@@ -4,7 +4,10 @@ Console.WriteLine();
 var list = new Problem01.List.List<int>();
 
 list.Add(1);
-list.Remove(1);
+list.Add(2);
+list.Add(3);
+list.Insert(2, 999);
+Console.WriteLine("List items: " + string.Join(", ", list));
 Console.WriteLine(list.Count);
 
 Console.WriteLine("==============================");
