@@ -8,6 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\01.1.CircularQueue\01.1.CircularQueue.csproj" />
     <ProjectReference Include="..\01.FasterQueue\01.CircularQueue.csproj" />
     <ProjectReference Include="..\02.DoublyLinkedList\02.DoublyLinkedList.csproj" />
     <ProjectReference Include="..\03.ReversedList\03.ReversedList.csproj" />
