@@ -70,7 +70,7 @@
         {
             this.ValidateIndex(index);
 
-            index = this.Count - 1 - index;
+            index = this.Count - index;
 
             if (this.Count == this.items.Length)
             {
