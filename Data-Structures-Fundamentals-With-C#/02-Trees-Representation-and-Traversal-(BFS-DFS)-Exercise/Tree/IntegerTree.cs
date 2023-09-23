@@ -17,25 +17,25 @@
             int currentSum = 0;
             List<int> stack = new List<int>();
 
-            this.PathsSum(this, currentSum, sum, stack, ref result);
+            this.PathsSum(this, currentSum, sum, stack, result);
 
             return result;
         }
         
-        private void PathsSum(IntegerTree tree, int currentSum, int sum, List<int> pathsCollection, ref List<List<int>> result)
+        private void PathsSum(IntegerTree tree, int currentSum, int sum, List<int> pathsCollection, List<List<int>> result)
         {
             pathsCollection.Add(tree.Key);
 
             foreach (IntegerTree child in tree.Children)
             {
-                // ref currentSum + tree.Key
-                this.PathsSum(child, currentSum + tree.Key, sum, pathsCollection, ref result);
+                this.PathsSum(child, currentSum + tree.Key, sum, pathsCollection, result);
                 // Parent
                 pathsCollection.Remove(child.Key);
             }
 
             if (tree.Children.Count == 0)
             {
+                // Leaf
                 currentSum += tree.Key;
 
                 if (currentSum == sum)
