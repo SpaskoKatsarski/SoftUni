@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Tree
+namespace TreeFactory
 {
     public interface IIntegerTree: IAbstractTree<int>
     {

@@ -1,4 +1,4 @@
-﻿namespace Tree
+﻿namespace TreeFactory
 {
     using System;
     using System.Collections.Generic;
@@ -153,7 +153,28 @@
 
         public T GetDeepestKey()
         {
-            throw new NotImplementedException();
+            int maxDepth = 0;
+            Tree<T> deepestNode = null;
+
+            int currDepth = 0;
+
+            this.DeepestKeyDfs(currDepth, this, ref maxDepth, ref deepestNode);
+
+            return deepestNode.Key;
+        }
+
+        private void DeepestKeyDfs(int depth, Tree<T> tree, ref int maxDepth, ref Tree<T> deepestNode)
+        {
+            foreach (var child in tree.Children)
+            {
+                this.DeepestKeyDfs(depth + 1, child, ref maxDepth, ref deepestNode);
+            }
+
+            if (depth > maxDepth)
+            {
+                maxDepth = depth;
+                deepestNode = tree;
+            }
         }
 
         public IEnumerable<T> GetLongestPath()

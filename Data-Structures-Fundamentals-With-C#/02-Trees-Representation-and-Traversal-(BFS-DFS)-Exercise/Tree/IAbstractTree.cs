@@ -1,4 +1,4 @@
-﻿namespace Tree
+﻿namespace TreeFactory
 {
     using System.Collections.Generic;
 
