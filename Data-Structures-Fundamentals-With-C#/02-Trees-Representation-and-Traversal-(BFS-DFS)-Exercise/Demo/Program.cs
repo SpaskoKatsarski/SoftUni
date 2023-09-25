@@ -1,6 +1,8 @@
 ﻿namespace Demo
 {
     using System;
+    using System.Collections.Generic;
+    using System.Linq;
     using TreeFactory;
 
     class Program
@@ -13,7 +15,9 @@
 
             var tree = factory.CreateTreeFromStrings(input);
 
-            Console.WriteLine(string.Join(", ", tree.GetLongestPath()));
+            IEnumerable<Tree<int>> result = tree.GetSubtreesWithGivenSum(43);
+
+            Console.WriteLine(string.Join(", ", result.Select(n => n.Key)));
         }
     }
 }
