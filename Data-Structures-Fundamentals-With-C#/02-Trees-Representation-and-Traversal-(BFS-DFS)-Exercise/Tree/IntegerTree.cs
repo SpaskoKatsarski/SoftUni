@@ -21,7 +21,7 @@
 
             return result;
         }
-        
+
         private void PathsSum(IntegerTree tree, int currentSum, int sum, List<int> pathsCollection, List<List<int>> result)
         {
             pathsCollection.Add(tree.Key);

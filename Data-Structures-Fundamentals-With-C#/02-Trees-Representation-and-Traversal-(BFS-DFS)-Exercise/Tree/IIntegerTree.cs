@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace TreeFactory
 {
-    public interface IIntegerTree: IAbstractTree<int>
+    public interface IIntegerTree : IAbstractTree<int>
     {
         IEnumerable<IEnumerable<int>> GetPathsWithGivenSum(int sum);
 

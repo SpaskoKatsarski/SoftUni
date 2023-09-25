@@ -1,6 +1,5 @@
 ﻿namespace TreeFactory
 {
-    using System;
     using System.Collections.Generic;
     using System.Text;
 
@@ -179,7 +178,36 @@
 
         public IEnumerable<T> GetLongestPath()
         {
-            throw new NotImplementedException();
+            int depth = 0;
+            int maxDepth = 0;
+
+            Tree<T> tree = this;
+
+            List<T> path = new List<T>();
+            List<T> longestPath = new List<T>();
+
+            this.LongestPathDfs(depth, ref maxDepth, tree, path, longestPath);
+
+            return longestPath;
+        }
+
+        public void LongestPathDfs(int currentDepth, ref int maxDepth, Tree<T> tree, List<T> path, List<T> longestPath)
+        {
+            path.Add(tree.Key);
+
+            foreach (var child in tree.Children)
+            {
+                this.LongestPathDfs(currentDepth + 1, ref maxDepth, child, path, longestPath);
+            }
+
+            if (currentDepth > maxDepth)
+            {
+                maxDepth = currentDepth;
+                longestPath.Clear();
+                longestPath.AddRange(path);
+            }
+
+            path.Remove(tree.Key);
         }
     }
 }

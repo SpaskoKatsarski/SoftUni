@@ -1,7 +1,7 @@
 ﻿namespace Demo
 {
     using System;
-    using Tree;
+    using TreeFactory;
 
     class Program
     {
@@ -13,7 +13,7 @@
 
             var tree = factory.CreateTreeFromStrings(input);
 
-            Console.WriteLine(string.Join(", ", tree.GetLeafKeys()));
+            Console.WriteLine(string.Join(", ", tree.GetLongestPath()));
         }
     }
 }
