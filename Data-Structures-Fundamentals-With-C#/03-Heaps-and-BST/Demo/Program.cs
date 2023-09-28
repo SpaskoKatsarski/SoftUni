@@ -10,11 +10,20 @@ namespace Demo
         static void Main(string[] args)
         {
 
-            BinaryTree<int> leftTree = new BinaryTree<int>(4, new BinaryTree<int>(2, null, null), null);
-            BinaryTree<int> rightTree = new BinaryTree<int>(10, null, null);
-            BinaryTree<int> binaryTree = new BinaryTree<int>(5, leftTree, rightTree);
+            BinarySearchTree<int> tree = new BinarySearchTree<int>();
+            tree.Insert(17);
+            tree.Insert(25);
+            tree.Insert(9);
+            tree.Insert(3);
+            tree.Insert(11);
+            tree.Insert(20);
+            tree.Insert(31);
 
-            binaryTree.ForEachInOrder(Console.WriteLine);
+            tree.Insert(24);
+
+            IBinarySearchTree<int> newTree = tree.Search(9);
+
+            newTree.EachInOrder(Console.WriteLine);
         }
     }
 }
