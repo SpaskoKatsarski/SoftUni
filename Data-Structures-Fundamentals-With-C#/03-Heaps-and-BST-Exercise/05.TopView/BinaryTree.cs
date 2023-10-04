@@ -38,14 +38,7 @@
                 return;
             }
 
-            if (dict.ContainsKey(distance))
-            {
-                if (dict[distance].nodeLevel > level)
-                {
-                    dict[distance] = (node.Value, level);
-                }
-            }
-            else
+            if (!dict.ContainsKey(distance))
             {
                 dict.Add(distance, (node.Value, level));
             }
