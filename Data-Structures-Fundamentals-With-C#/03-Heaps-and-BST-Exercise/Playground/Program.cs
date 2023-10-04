@@ -10,15 +10,8 @@ namespace Playground
     {
         static void Main(string[] args)
         {
-            MinHeap<int> minHeap = new MinHeap<int>();
-            minHeap.Add(3);
-            minHeap.Add(2);
-            minHeap.Add(1);
-
-            Console.WriteLine(minHeap.ExtractMin());
-            Console.WriteLine(minHeap.ExtractMin());
-            Console.WriteLine(minHeap.ExtractMin());
-            Console.WriteLine(minHeap.Size == 0);
+            CookiesProblem cookiesP = new CookiesProblem();
+            Console.WriteLine(cookiesP.Solve(7, new int[] { 12, 3, 9, 10, 2 }));
         }
     }
 }

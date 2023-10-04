@@ -10,22 +10,26 @@ namespace _04.CookiesProblem
     {
         public int Solve(int minSweetness, int[] cookies)
         {
-            OrderedBag<int> priorityQueue = new OrderedBag<int>();
-            priorityQueue.AddMany(cookies);
+            MinHeap<int> minHeap = new MinHeap<int>();
 
-            int currentMinSweetness = priorityQueue[0];
+            foreach (var cookie in cookies)
+            {
+                minHeap.Add(cookie);
+            }
+
+            int currentMinSweetness = minHeap.Peek();
             int steps = 0;
 
-            while (currentMinSweetness < minSweetness && priorityQueue.Count > 0)
+            while (currentMinSweetness < minSweetness && minHeap.Size > 1)
             {
-                int leastSweetCookie = priorityQueue.RemoveFirst();
-                int secondLeastSweetCookie = priorityQueue.RemoveFirst();
+                int leastSweetCookie = minHeap.ExtractMin();
+                int secondLeastSweetCookie = minHeap.ExtractMin();
 
                 int mixed = leastSweetCookie + 2 * secondLeastSweetCookie;
 
-                priorityQueue.Add(mixed);
+                minHeap.Add(mixed);
 
-                currentMinSweetness = priorityQueue[0];
+                currentMinSweetness = minHeap.Peek();
                 steps++;
             }
 
