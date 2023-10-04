@@ -11,7 +11,7 @@ public class MinHeapTests
 
         heap.Add(3);
 
-        Assert.AreEqual(1, heap.Count);
+        Assert.AreEqual(1, heap.Size);
     }
 
     [Test]
@@ -30,13 +30,13 @@ public class MinHeapTests
         var heap = new MinHeap<int>();
 
         heap.Add(3);
-        Assert.AreEqual(1, heap.Count);
+        Assert.AreEqual(1, heap.Size);
 
         heap.Add(5);
-        Assert.AreEqual(2, heap.Count);
+        Assert.AreEqual(2, heap.Size);
 
         heap.Add(6);
-        Assert.AreEqual(3, heap.Count);
+        Assert.AreEqual(3, heap.Size);
     }
 
     [Test]
@@ -72,7 +72,7 @@ public class MinHeapTests
         heap.Add(5);
         heap.ExtractMin();
 
-        Assert.AreEqual(1, heap.Count);
+        Assert.AreEqual(1, heap.Size);
     }
 
     [Test]
@@ -97,7 +97,7 @@ public class MinHeapTests
         Assert.AreEqual(1, heap.ExtractMin());
         Assert.AreEqual(3, heap.ExtractMin());
         Assert.AreEqual(5, heap.ExtractMin());
-        Assert.AreEqual(0, heap.Count);
+        Assert.AreEqual(0, heap.Size);
     }
 
     [Test]

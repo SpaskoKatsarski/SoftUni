@@ -15,7 +15,7 @@ public class PriorityQueueTests
         queue.Enqueue(testNode);
         queue.DecreaseKey(testNode);
 
-        Assert.AreEqual(1, queue.Count);
+        Assert.AreEqual(1, queue.Size);
         Assert.AreEqual(1, queue.Dequeue().Value);
     }
 
@@ -33,7 +33,7 @@ public class PriorityQueueTests
         testNode2.Value = 1;
         queue.DecreaseKey(testNode2);
 
-        Assert.AreEqual(2, queue.Count);
+        Assert.AreEqual(2, queue.Size);
         Assert.AreEqual(1, queue.Dequeue().Value);
     }
 

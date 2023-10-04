@@ -10,18 +10,15 @@ namespace Playground
     {
         static void Main(string[] args)
         {
-            BinarySearchTree<int> binarySearchTree = new BinarySearchTree<int>();
-            binarySearchTree.Insert(12);
-            binarySearchTree.Insert(5);
-            binarySearchTree.Insert(19);
-            binarySearchTree.Insert(1);
-            binarySearchTree.Insert(8);
-            binarySearchTree.Insert(16);
-            binarySearchTree.Insert(23);
-            binarySearchTree.Insert(21);
-            binarySearchTree.Insert(30);
+            MinHeap<int> minHeap = new MinHeap<int>();
+            minHeap.Add(3);
+            minHeap.Add(2);
+            minHeap.Add(1);
 
-            Console.WriteLine(binarySearchTree.Select(2));
+            Console.WriteLine(minHeap.ExtractMin());
+            Console.WriteLine(minHeap.ExtractMin());
+            Console.WriteLine(minHeap.ExtractMin());
+            Console.WriteLine(minHeap.Size == 0);
         }
     }
 }

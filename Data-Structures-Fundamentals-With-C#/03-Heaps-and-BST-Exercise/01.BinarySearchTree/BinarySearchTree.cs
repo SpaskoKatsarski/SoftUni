@@ -60,7 +60,19 @@
 
         public void DeleteMax()
         {
-            throw new NotImplementedException();
+            this.root = this.DeleteMax(this.root);
+        }
+
+        private Node DeleteMax(Node node)
+        {
+            if (node.Right == null)
+            {
+                return node.Left;
+            }
+
+            node.Right = this.DeleteMin(node.Right);
+
+            return node;
         }
 
         public void DeleteMin()
@@ -102,7 +114,27 @@
 
         public int Rank(T element)
         {
-            throw new NotImplementedException();
+            int count = 0;
+
+            this.Rank(this.root, element, ref count);
+
+            return count;
+        }
+
+        private void Rank(Node node, T element, ref int count)
+        {
+            if (node == null)
+            {
+                return;
+            }
+
+            if (node.Value.CompareTo(element) < 0)
+            {
+                count++;
+            }
+
+            this.Rank(node.Left, element, ref count);
+            this.Rank(node.Right, element, ref count);
         }
 
         public T Select(int rank)
@@ -145,12 +177,12 @@
 
         public T Ceiling(T element)
         {
-            throw new NotImplementedException();
+            return this.Select(this.Rank(element) + 1);
         }
 
         public T Floor(T element)
         {
-            throw new NotImplementedException();
+            return this.Select(this.Rank(element) - 1);
         }
 
         public IEnumerable<T> Range(T startRange, T endRange)
