@@ -6,22 +6,22 @@ namespace Exam.ViTube
 {
     public class ViTubeRepository : IViTubeRepository
     {
-        private List<User> users = new List<User>();
-        private List<Video> videos = new List<Video>();
+        private Dictionary<string, User> users = new Dictionary<string, User>();
+        private Dictionary<string, Video> videos = new Dictionary<string, Video>();
 
         public bool Contains(User user)
         {
-            return this.users.Contains(user);
+            return this.users.ContainsKey(user.Id);
         }
 
         public bool Contains(Video video)
         {
-            return this.videos.Contains(video);
+            return this.videos.ContainsKey(video.Id);
         }
 
         public void DislikeVideo(User user, Video video)
         {
-            if (!this.users.Contains(user) || !this.videos.Contains(video))
+            if (!this.users.ContainsKey(user.Id) || !this.videos.ContainsKey(video.Id))
             {
                 throw new ArgumentException();
             }
@@ -32,7 +32,7 @@ namespace Exam.ViTube
 
         public IEnumerable<User> GetPassiveUsers()
         {
-            ICollection<User> users = this.users
+            ICollection<User> users = this.users.Values
                 .Where(u => u.WatchedVideos.Count == 0 && u.VideosByLikeOrDislike.Count == 0)
                 .ToList();
 
@@ -41,7 +41,7 @@ namespace Exam.ViTube
 
         public IEnumerable<User> GetUsersByActivityThenByName()
         {
-            IEnumerable<User> users = this.users
+            IEnumerable<User> users = this.users.Values
                 .OrderByDescending(u => u.WatchedVideos.Count)
                 .ThenByDescending(u => u.VideosByLikeOrDislike.Count)
                 .ThenBy(u => u.Username);
@@ -51,12 +51,12 @@ namespace Exam.ViTube
 
         public IEnumerable<Video> GetVideos()
         {
-            return this.videos.AsEnumerable();
+            return this.videos.Values;
         }
 
         public IEnumerable<Video> GetVideosOrderedByViewsThenByLikesThenByDislikes()
         {
-            IEnumerable<Video> videos = this.videos
+            IEnumerable<Video> videos = this.videos.Values
                 .OrderByDescending(v => v.Views)
                 .ThenByDescending(v => v.Likes)
                 .ThenBy(v => v.Dislikes);
@@ -66,7 +66,7 @@ namespace Exam.ViTube
 
         public void LikeVideo(User user, Video video)
         {
-            if (!this.users.Contains(user) || !this.videos.Contains(video))
+            if (!this.users.ContainsKey(user.Id) || !this.videos.ContainsKey(video.Id))
             {
                 throw new ArgumentException();
             }
@@ -77,17 +77,17 @@ namespace Exam.ViTube
 
         public void PostVideo(Video video)
         {
-            this.videos.Add(video);
+            this.videos.Add(video.Id, video);
         }
 
         public void RegisterUser(User user)
         {
-            this.users.Add(user);
+            this.users.Add(user.Id, user);
         }
 
         public void WatchVideo(User user, Video video)
         {
-            if (!this.users.Contains(user) || !this.videos.Contains(video))
+            if (!this.users.ContainsKey(user.Id) || !this.videos.ContainsKey(video.Id))
             {
                 throw new ArgumentException();
             }

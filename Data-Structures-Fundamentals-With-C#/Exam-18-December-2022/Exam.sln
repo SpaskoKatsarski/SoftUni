@@ -11,6 +11,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Exam.MovieDatabase.Tests", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Exam.ViTube.Tests", "Exam.ViTube.Tests\Exam.ViTube.Tests.csproj", "{18E54B90-3A89-43E5-979C-BE6C33F5266A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Exam.ViTube.2", "Exam.ViTube.2\Exam.ViTube.2.csproj", "{7FBC4A3F-E117-4C59-A78D-5F959C4A68DD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{18E54B90-3A89-43E5-979C-BE6C33F5266A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{18E54B90-3A89-43E5-979C-BE6C33F5266A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{18E54B90-3A89-43E5-979C-BE6C33F5266A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7FBC4A3F-E117-4C59-A78D-5F959C4A68DD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7FBC4A3F-E117-4C59-A78D-5F959C4A68DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7FBC4A3F-E117-4C59-A78D-5F959C4A68DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7FBC4A3F-E117-4C59-A78D-5F959C4A68DD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
