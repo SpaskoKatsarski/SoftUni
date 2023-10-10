@@ -9,7 +9,6 @@ namespace Exam.ViTube
             Id = id;
             Username = username;
             this.WatchedVideos = new List<Video>();
-            this.VideosByLikeOrDislike = new Dictionary<string, string>();
         }
 
         public string Id { get; set; }
@@ -19,6 +18,6 @@ namespace Exam.ViTube
         public ICollection<Video> WatchedVideos { get; set; }
 
         // VideoId -> "like" or "dislike"
-        public Dictionary<string, string> VideosByLikeOrDislike { get; private set; }
+        public int LikedAndDislikedVideosCount { get; set; }
     }
 }

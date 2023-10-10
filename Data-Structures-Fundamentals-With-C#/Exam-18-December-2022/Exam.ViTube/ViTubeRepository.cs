@@ -27,13 +27,13 @@ namespace Exam.ViTube
             }
 
             video.Dislikes++;
-            user.VideosByLikeOrDislike.Add(video.Id, "dislike");
+            user.LikedAndDislikedVideosCount++;
         }
 
         public IEnumerable<User> GetPassiveUsers()
         {
             ICollection<User> users = this.users.Values
-                .Where(u => u.WatchedVideos.Count == 0 && u.VideosByLikeOrDislike.Count == 0)
+                .Where(u => u.WatchedVideos.Count == 0 && u.LikedAndDislikedVideosCount == 0)
                 .ToList();
 
             return users;
@@ -43,8 +43,8 @@ namespace Exam.ViTube
         {
             IEnumerable<User> users = this.users.Values
                 .OrderByDescending(u => u.WatchedVideos.Count)
-                .ThenByDescending(u => u.VideosByLikeOrDislike.Count)
-                .ThenBy(u => u.Username);
+                .ThenByDescending(u => u.LikedAndDislikedVideosCount)
+                .ThenByDescending(u => u.Username);
 
             return users;
         }
@@ -72,7 +72,7 @@ namespace Exam.ViTube
             }
 
             video.Likes++;
-            user.VideosByLikeOrDislike.Add(video.Id, "like");
+            user.LikedAndDislikedVideosCount++;
         }
 
         public void PostVideo(Video video)
