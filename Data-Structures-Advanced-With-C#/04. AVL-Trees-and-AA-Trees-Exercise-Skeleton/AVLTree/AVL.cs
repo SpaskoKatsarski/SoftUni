@@ -156,7 +156,7 @@
             node.Right = right.Left;
             right.Left = node;
 
-            node.Height = Math.Max(GetHeight(right.Left), GetHeight(right.Right)) + 1;
+            node.Height = Math.Max(GetHeight(node.Left), GetHeight(node.Right)) + 1;
 
             return right;
         }
