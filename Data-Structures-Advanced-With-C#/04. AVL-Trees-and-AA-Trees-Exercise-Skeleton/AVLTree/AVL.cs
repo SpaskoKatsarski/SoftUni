@@ -57,12 +57,77 @@
 
         public void Delete(T element)
         {
-            throw new InvalidOperationException();
+            this.Root = this.Delete(this.Root, element);
+        }
+
+        private Node Delete(Node node, T element)
+        {
+            if (node == null)
+            {
+                return null;
+            }
+
+            if (element.CompareTo(node.Value) < 0)
+            {
+                node.Left = this.Delete(node.Left, element);
+            }
+            else if (element.CompareTo(node.Value) > 0)
+            {
+                node.Right = this.Delete(node.Right, element);
+            }
+            else
+            {
+                if (node.Left == null && node.Right == null)
+                {
+                    return null;
+                }
+                else if (node.Left == null)
+                {
+                    node = node.Right;
+                }
+                else if (node.Right == null)
+                {
+                    node = node.Left;
+                }
+                else
+                {
+                    Node temp = this.FindSmallestChild(node.Right);
+                    node.Value = temp.Value;
+
+                    node.Right = this.Delete(node.Right, temp.Value);
+                }
+            }
+
+            node = this.Balance(node);
+            node.Height = Math.Max(this.GetHeight(node.Left), this.GetHeight(node.Right)) + 1;
+
+            return node;
+        }
+
+        private Node FindSmallestChild(Node node)
+        {
+            //if (node == null)
+            //{
+            //    return node;
+            //}
+
+            if (node.Left == null)
+            {
+                return node;
+            }
+
+            return this.FindSmallestChild(node.Left);
         }
 
         public void DeleteMin()
         {
-            throw new InvalidOperationException();
+            if (this.Root == null)
+            {
+                return;
+            }
+
+            Node smallestNode = this.FindSmallestChild(this.Root);
+            this.Delete(smallestNode.Value);
         }
 
         public void Insert(T element)
