@@ -9,6 +9,11 @@ namespace RoyaleArena
     {
         private Dictionary<int, BattleCard> battleCards;
 
+        public Arena()
+        {
+            this.battleCards = new Dictionary<int, BattleCard>();
+        }
+
         public int Count => this.battleCards.Count;
 
         public void Add(BattleCard card)
@@ -38,7 +43,7 @@ namespace RoyaleArena
                 .OrderBy(c => c.Swag)
                 .ThenBy(c => c.Id);
 
-            if (cards.Count() > n)
+            if (cards.Count() < n)
             {
                 throw new InvalidOperationException();
             }
@@ -51,7 +56,7 @@ namespace RoyaleArena
             return this.battleCards
                 .Values
                 .Where(c => c.Swag >= lo && c.Swag <= hi)
-                .OrderByDescending(c => c.Swag);
+                .OrderBy(c => c.Swag);
         }
 
         public IEnumerable<BattleCard> GetByCardType(CardType type)
@@ -133,7 +138,7 @@ namespace RoyaleArena
             IEnumerable<BattleCard> cards = this.battleCards
                 .Values
                 .Where(c => c.Type == type && c.Damage >= lo && c.Damage <= hi);
-                
+
             if (cards.Count() == 0)
             {
                 throw new InvalidOperationException();
